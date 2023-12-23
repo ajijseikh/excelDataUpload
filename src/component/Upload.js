@@ -14,6 +14,7 @@ function Upload() {
     const docRef = await addDoc(collection(db, "excelcollection"), {
       data,
     });
+    console.log(docRef);
     alert("Document upload to database");
   };
 

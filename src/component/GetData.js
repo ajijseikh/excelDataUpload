@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../dataBase/firebase.Config";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
@@ -23,17 +23,11 @@ function GetData() {
      result.forEach((doc) => {
      
       setFatchData(doc.data);
-      setAllUserData(fetchData);
+      setAllUserData(doc.data);
     });
-
    
-
-    // setFatchData(results);
   };
-  useEffect(() => {
-    fetchDataHandler();
-  }, []);
-
+  
   const fetchDataByName = async (inputData) => {
     const filterData = fetchData.filter(
       (user) => user.email === inputData.trim().toLowerCase()
@@ -117,7 +111,11 @@ function GetData() {
           </table>
         </div>
       ) : (
-        <div>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
           <table>
             <thead>
               {filterUserData ? (
@@ -127,7 +125,7 @@ function GetData() {
                   <th>last_name</th>
                   <th>email</th>
                   <th>gender</th>
-                  <th>filter</th>
+                 
                 </tr>
               ) : null}
             </thead>
